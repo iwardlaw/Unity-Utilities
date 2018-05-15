@@ -43,8 +43,6 @@ public static class Util {
       value = modulus - 1;
   }
 
-  static int debugLevel = 1;
-
   /// <summary>
   /// Gets the string corresponding to a Photon client state enum. If arg out of range, returns "???".
   /// </summary>
@@ -173,26 +171,28 @@ public static class Util {
     return ret;
   }
 
+  static int logLevel = 1;
+
   /// <summary>
-  /// Prints a debug message to the screen if Utilities.debugLevel is set high enough. (This member is private and must be manipulated from within Utilities.cs.)
-  /// Differs from DebugPrintoutBasic() in that the entire message is printed in the indicated color.
+  /// Prints a message to the screen if Util.logLevel is set high enough. (This member is private and must be manipulated from within Util.cs.)
+  /// Differs from Util.LogBasic() in that the entire message is printed in the indicated color.
   /// </summary>
   /// <param name="textColorName">Name of the color in which to print the debug message.</param>
-  /// <param name="message">Debug message to print to the console.</param>
-  /// <param name="level">Debug level; Utilities.debugLevel must be set to at least this value for the message to print.</param>
-  public static void DebugPrintout(string textColorName = "red", string message = "-- Debug --", int level = 1)
+  /// <param name="message">Message to print to the console.</param>
+  /// <param name="level">Log level; Util.logLevel must be set to at least this value for the message to print.</param>
+  public static void Log(string textColor = "red", string message = "-- Debug --", int level = 1)
   {
-    if(debugLevel >= level)
+    if(logLevel >= level)
       Debug.Log("<color=" + HexExpand(textColorName) + ">" + message + "</color>");
   }
 
   /// <summary>
-  /// Prints a debug message to the screen if Utilities.debugLevel is set high enough. (This member is private and must be manipulated from within Utilities.cs.)
-  /// Differs from DebugPrintout() in that no color is assigned.
+  /// Prints a message to the screen if Util.logLevel is set high enough. (This member is private and must be manipulated from within Util.cs.)
+  /// Differs from Util.Log() in that no color is assigned.
   /// </summary>
-  /// <param name="message">Debug message to print to the console.</param>
-  /// <param name="level">Debug level; Utilities.debugLevel must be set to at least this value for the message to print.</param>
-  public static void DebugPrintoutBasic(string message = "-- Debug --", int level = 1)
+  /// <param name="message">Message to print to the console.</param>
+  /// <param name="level">Log level; Util.logLevel must be set to at least this value for the message to print.</param>
+  public static void LogBasic(string message = "-- Debug --", int level = 1)
   {
     if(debugLevel >= level)
       Debug.Log(message);
